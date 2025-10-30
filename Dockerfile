@@ -1,12 +1,12 @@
 #--------- Generic stuff all our Dockerfiles should start with so we get caching ------------
-FROM python:3.7
-MAINTAINER Tim Sutton<tim@kartoza.com>
+FROM python:3.12
+MAINTAINER Even Rouault <even.rouault@spatialys.com>
 
 LABEL \
     org.label-schema.schema-version="1.0" \
-    org.label-schema.build-date="2022-03-15" \
+    org.label-schema.build-date="2025-10-30" \
     org.label-schema.name="mapproxy" \
-    org.label-schema.description="Fork of mapproxy for handling HIPS protocol" \
+    org.label-schema.description="Mapproxy with a plugin for handling HIPS protocol" \
     org.label-schema.url="https://github.com/pole-surfaces-planetaires/docker-mapproxy" \
     org.label-schema.vcs-url="https://github.com/pole-surfaces-planetaires/docker-mapproxy" \
     org.label-schema.vcs-ref="https://github.com/pole-surfaces-planetaires/docker-mapproxy" \
@@ -20,7 +20,7 @@ RUN apt-get -y update && \
     gettext \
     build-essential
 
-RUN pip install pyproj numba Pillow git+https://github.com/pole-surfaces-planetaires/mapproxy@hips uwsgi
+RUN pip install pyproj numba Pillow mapproxy_hips uwsgi
 
 EXPOSE 8080
 ENV \
